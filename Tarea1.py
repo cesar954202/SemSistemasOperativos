@@ -44,7 +44,7 @@ class proceso:
     	print "Realizado por Cesar Daniel Sanchez Navarro"
     	print "Numero de lote en ejecucion: ", self.Numlote
     	print "Numero de proceso en ejecucion: ", self.Numproceso
-    	print "Tiempo Maximo estimado: "
+    	print "Tiempo Maximo estimado: 3 ms"
     	self.do_operation()
         print "Operacion: ", self.operador1 , self.signo , self.operador2, " = ", self.resultado
         
@@ -87,11 +87,12 @@ for i in Procesos:
 	print "Lotes pendientes: ", NumLotesPendientes - i.Numlote
 	i.mostrar()
 	print "Tiempo transcurrido:"
-	print "Tiempo restante"
+	print "Tiempo restante: ", ((NumProcesos-1) - procesosDone) * 3, "ms"
 	print "Procesos Terminados: ", procesosDone+1
 	print "Contador Global: "
 	print ""
 	procesosDone = procesosDone +1
+	time.sleep(30)
 
 
 

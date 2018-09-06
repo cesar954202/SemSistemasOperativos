@@ -1,20 +1,15 @@
 import math
 import time
-from timeit import timeit
-from time import time
 from random import randrange
-
 class proceso:
     def __init__(self,o1,o2,NumSig,NumLot,NumProce):
         self.operador1 = o1
         self.operador2 = o2
         self.signoNum = NumSig
         self.signo = ""
-        self.nombre = ""
         self.resultado = 0
         self.Numlote = NumLot
         self.Numproceso = NumProce
-        self.tiempo = 1
 
     def do_operation(self):
     	if(self.signoNum == 1):
@@ -41,14 +36,18 @@ class proceso:
     		self.resultado = (self.operador1 * 100) / self.operador2
 
     def mostrar(self):
+        if(self.Numlote = 1):
+            
     	print "Realizado por Cesar Daniel Sanchez Navarro"
     	print "Numero de lote en ejecucion: ", self.Numlote
     	print "Numero de proceso en ejecucion: ", self.Numproceso
-    	print "Tiempo Maximo estimado: 3 ms"
+    	print "Tiempo Maximo estimado: 3 segundos"
+        operacion_tiempo_inicio = time.time()
     	self.do_operation()
         print "Operacion: ", self.operador1 , self.signo , self.operador2, " = ", self.resultado
+        print "Duracion proceso: ", time.time() - operacion_tiempo_inicio
         
-
+tiempo_inicio = time.time()
 
 NumProcesos = int(input("Procesos necesarios: "))
 #Calculo de lotes pendientes
@@ -86,15 +85,16 @@ procesosDone = 0
 for i in Procesos:
 	print "Lotes pendientes: ", NumLotesPendientes - i.Numlote
 	i.mostrar()
-	print "Tiempo transcurrido:"
-	print "Tiempo restante: ", ((NumProcesos-1) - procesosDone) * 3, "ms"
+	print "Tiempo transcurrido:", time.time() - tiempo_inicio, " segundos"
+	print "Tiempo restante: ", ((NumProcesos-1) - procesosDone) * 3, " segundos"
 	print "Procesos Terminados: ", procesosDone+1
-	print "Contador Global: "
+	print "Contador Global tiempo: ", time.time() - tiempo_inicio, " segundos"
 	print ""
 	procesosDone = procesosDone +1
-	time.sleep(30)
-
-
+	time.sleep(1)
+tiempo_duracion = time.time() - tiempo_inicio
+print " "
+print "Duracion del programa: ", tiempo_duracion
 
 
 ###Imprimir

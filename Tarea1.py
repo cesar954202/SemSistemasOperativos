@@ -36,8 +36,6 @@ class proceso:
     		self.resultado = (self.operador1 * 100) / self.operador2
 
     def mostrar(self):
-        if(self.Numlote = 1):
-            
     	print "Realizado por Cesar Daniel Sanchez Navarro"
     	print "Numero de lote en ejecucion: ", self.Numlote
     	print "Numero de proceso en ejecucion: ", self.Numproceso

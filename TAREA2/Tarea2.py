@@ -1,6 +1,23 @@
 import math
 import time
 from random import randrange
+import msvcrt
+import threading
+
+class tecla:
+    def __init__(self):
+        self.teclapress = "N"
+
+    def getTeclapress(self):
+        return self.teclapress
+
+    def captura_letra(self):
+        i = 1
+        while i != 0:
+           char = msvcrt.getch()
+           print "PRESIONASTE ", char
+           self.teclapress = char
+
 class proceso:
     def __init__(self,o1,o2,NumSig,NumLot,NumProce):
         self.operador1 = o1
@@ -79,21 +96,43 @@ for i in range(1,NumProcesos):
 		CuentaLote = 1
 		NumLotes = NumLotes+1
 
+teclado = tecla()
+hilo = threading.Thread(target=teclado.captura_letra)
+hilo.start()
+
 procesosDone = 0
-for i in Procesos:
-	print "Lotes pendientes: ", NumLotesPendientes - i.Numlote
-	i.mostrar()
-	print "Tiempo transcurrido:", time.time() - tiempo_inicio, " segundos"
-	print "Tiempo restante: ", ((NumProcesos-1) - procesosDone) * 3, " segundos"
-	print "Procesos Terminados: ", procesosDone+1
-	print "Contador Global tiempo: ", time.time() - tiempo_inicio, " segundos"
-	print ""
-	procesosDone = procesosDone +1
-	time.sleep(1)
+i = 0
+while i < len(Procesos):
+
+    print "Lotes pendientes: ", NumLotesPendientes - Procesos[i].Numlote
+    Procesos[i].mostrar()
+    print "Tiempo transcurrido:", time.time() - tiempo_inicio, " segundos"
+    print "Tiempo restante: ", ((NumProcesos-1) - procesosDone) * 3, " segundos"
+    print "Procesos Terminados: ", procesosDone+1
+    print "Contador Global tiempo: ", time.time() - tiempo_inicio, " segundos"
+    print ""
+    time.sleep(2)
+    print "SE VA HACER CON EL PROCESO", teclado.teclapress
+    procesosDone = procesosDone +1
+    i = i+1
+    teclado.teclapress = 'N'
+
+# for i in Procesos:
+# 	print "Lotes pendientes: ", NumLotesPendientes - i.Numlote
+# 	i.mostrar()
+# 	print "Tiempo transcurrido:", time.time() - tiempo_inicio, " segundos"
+# 	print "Tiempo restante: ", ((NumProcesos-1) - procesosDone) * 3, " segundos"
+# 	print "Procesos Terminados: ", procesosDone+1
+# 	print "Contador Global tiempo: ", time.time() - tiempo_inicio, " segundos"
+# 	print ""
+#     print "TEST 10000", teclado.teclapress
+# 	procesosDone = procesosDone +1
+# 	time.sleep(1)
+
+
 tiempo_duracion = time.time() - tiempo_inicio
 print " "
 print "Duracion del programa: ", tiempo_duracion
-
 
 ###Imprimir
 #Lotes pendientes###

@@ -27,6 +27,7 @@ class proceso:
         self.resultado = 0
         self.Numlote = NumLot
         self.Numproceso = NumProce
+        self.estado = "N"
 
     def do_operation(self):
     	if(self.signoNum == 1):
@@ -52,13 +53,24 @@ class proceso:
     		self.signo = ' porciento de '
     		self.resultado = (self.operador1 * 100) / self.operador2
 
-    def mostrar(self):
+    def mostrar(self,teclapress):
     	print "Realizado por Cesar Daniel Sanchez Navarro"
     	print "Numero de lote en ejecucion: ", self.Numlote
     	print "Numero de proceso en ejecucion: ", self.Numproceso
     	print "Tiempo Maximo estimado: 3 segundos"
+
+        if teclado.teclapress == 'e':
+            print "Interrupcion por entrada- salida"
+        elif teclado.teclapress == 'w':
+            print "Error "
+        elif teclado.teclapress == 'p':
+            print "Pausa "
+        elif teclado.teclapress == 'c':
+            print "Continua"
+
         operacion_tiempo_inicio = time.time()
     	self.do_operation()
+        
         print "Operacion: ", self.operador1 , self.signo , self.operador2, " = ", self.resultado
         print "Duracion proceso: ", time.time() - operacion_tiempo_inicio
         
@@ -103,50 +115,23 @@ hilo.start()
 procesosDone = 0
 i = 0
 while i < len(Procesos):
-
     print "Lotes pendientes: ", NumLotesPendientes - Procesos[i].Numlote
-    Procesos[i].mostrar()
+    print "Proceso #", i
+    time.sleep(2)
+
+
+
+    Procesos[i].mostrar(teclado.teclapress)
     print "Tiempo transcurrido:", time.time() - tiempo_inicio, " segundos"
     print "Tiempo restante: ", ((NumProcesos-1) - procesosDone) * 3, " segundos"
     print "Procesos Terminados: ", procesosDone+1
     print "Contador Global tiempo: ", time.time() - tiempo_inicio, " segundos"
     print ""
-    time.sleep(2)
-    print "SE VA HACER CON EL PROCESO", teclado.teclapress
     procesosDone = procesosDone +1
     i = i+1
     teclado.teclapress = 'N'
 
-# for i in Procesos:
-# 	print "Lotes pendientes: ", NumLotesPendientes - i.Numlote
-# 	i.mostrar()
-# 	print "Tiempo transcurrido:", time.time() - tiempo_inicio, " segundos"
-# 	print "Tiempo restante: ", ((NumProcesos-1) - procesosDone) * 3, " segundos"
-# 	print "Procesos Terminados: ", procesosDone+1
-# 	print "Contador Global tiempo: ", time.time() - tiempo_inicio, " segundos"
-# 	print ""
-#     print "TEST 10000", teclado.teclapress
-# 	procesosDone = procesosDone +1
-# 	time.sleep(1)
-
-
 tiempo_duracion = time.time() - tiempo_inicio
 print " "
 print "Duracion del programa: ", tiempo_duracion
-
-###Imprimir
-#Lotes pendientes###
-#Numero de programa###
-#Tiempo Maximo estimado
-#Proceso en ejecucion###
-##Nombre
-##Operacion
-##Tiempo Maximo estimado
-##Numeo de programa
-#Procesos terminados
-#Numero de programa
-#Operacion y datos
-#Resultado de operacion
-#Contador Global
-
 

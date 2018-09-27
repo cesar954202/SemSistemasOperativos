@@ -27,7 +27,7 @@ class proceso:
         self.resultado = 0
         self.Numlote = NumLot
         self.Numproceso = NumProce
-        self.estado = "N"
+        self.estado = ""
 
     def do_operation(self):
     	if(self.signoNum == 1):
@@ -59,13 +59,13 @@ class proceso:
     	print "Numero de proceso en ejecucion: ", self.Numproceso
     	print "Tiempo Maximo estimado: 3 segundos"
 
-        if teclado.teclapress == 'e':
+        if teclapress == 'e':
             print "Interrupcion por entrada- salida"
-        elif teclado.teclapress == 'w':
+        elif teclapress == 'w':
             print "Error "
-        elif teclado.teclapress == 'p':
+        elif teclapress == 'p':
             print "Pausa "
-        elif teclado.teclapress == 'c':
+        elif teclapress == 'c':
             print "Continua"
 
         operacion_tiempo_inicio = time.time()
@@ -116,7 +116,7 @@ procesosDone = 0
 i = 0
 while i < len(Procesos):
     print "Lotes pendientes: ", NumLotesPendientes - Procesos[i].Numlote
-    print "Proceso #", i
+    print "Proceso #", i+1
     time.sleep(2)
 
 

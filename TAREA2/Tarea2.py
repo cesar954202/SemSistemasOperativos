@@ -27,7 +27,7 @@ class proceso:
         self.resultado = 0
         self.Numlote = NumLot
         self.Numproceso = NumProce
-        self.estado = "N"
+        self.estado = ""
 
     def do_operation(self):
     	if(self.signoNum == 1):
@@ -60,6 +60,7 @@ class proceso:
     	print "Tiempo Maximo estimado: 3 segundos"
 
         if teclapress == 'e':
+<<<<<<< HEAD
             print "INTERRUPCION POR ENTRADA-SALIDA"
 
         elif teclapress == 'w':
@@ -87,6 +88,22 @@ class proceso:
             print "Duracion proceso: ", time.time() - operacion_tiempo_inicio
  
 
+=======
+            print "Interrupcion por entrada- salida"
+        elif teclapress == 'w':
+            print "Error "
+        elif teclapress == 'p':
+            print "Pausa "
+        elif teclapress == 'c':
+            print "Continua"
+
+        operacion_tiempo_inicio = time.time()
+    	self.do_operation()
+        
+        print "Operacion: ", self.operador1 , self.signo , self.operador2, " = ", self.resultado
+        print "Duracion proceso: ", time.time() - operacion_tiempo_inicio
+        
+>>>>>>> Tarea2
 tiempo_inicio = time.time()
 print "Realizado por Cesar Daniel Sanchez Navarro"
 

@@ -54,27 +54,41 @@ class proceso:
     		self.resultado = (self.operador1 * 100) / self.operador2
 
     def mostrar(self,teclapress):
-    	print "Realizado por Cesar Daniel Sanchez Navarro"
+    	
     	print "Numero de lote en ejecucion: ", self.Numlote
     	print "Numero de proceso en ejecucion: ", self.Numproceso
     	print "Tiempo Maximo estimado: 3 segundos"
 
-        if teclado.teclapress == 'e':
-            print "Interrupcion por entrada- salida"
-        elif teclado.teclapress == 'w':
-            print "Error "
-        elif teclado.teclapress == 'p':
-            print "Pausa "
-        elif teclado.teclapress == 'c':
-            print "Continua"
+        if teclapress == 'e':
+            print "INTERRUPCION POR ENTRADA-SALIDA"
 
-        operacion_tiempo_inicio = time.time()
-    	self.do_operation()
-        
-        print "Operacion: ", self.operador1 , self.signo , self.operador2, " = ", self.resultado
-        print "Duracion proceso: ", time.time() - operacion_tiempo_inicio
-        
+        elif teclapress == 'w':
+            print "SE DETIENE PROCESO POR ERROR"
+
+        elif teclapress == 'p':
+            char = 'p'
+            while char != 'c':
+                print "SE MANTIENE PROCESO EN PAUSA"
+                char = msvcrt.getch()
+                print "Ingresaste ", char
+
+            print "PROCESO CONTINUA"
+            operacion_tiempo_inicio = time.time()
+            self.do_operation()
+            print "Operacion: ", self.operador1 , self.signo , self.operador2, " = ", self.resultado
+            print "Duracion proceso: ", time.time() - operacion_tiempo_inicio
+
+        elif teclapress == 'c':
+            print "CONTINUA NO HAY PROCESO EN PAUSA"
+        elif ():
+            operacion_tiempo_inicio = time.time()
+            self.do_operation()
+            print "Operacion: ", self.operador1 , self.signo , self.operador2, " = ", self.resultado
+            print "Duracion proceso: ", time.time() - operacion_tiempo_inicio
+ 
+
 tiempo_inicio = time.time()
+print "Realizado por Cesar Daniel Sanchez Navarro"
 
 NumProcesos = int(input("Procesos necesarios: "))
 #Calculo de lotes pendientes
@@ -116,12 +130,11 @@ procesosDone = 0
 i = 0
 while i < len(Procesos):
     print "Lotes pendientes: ", NumLotesPendientes - Procesos[i].Numlote
-    print "Proceso #", i
+    print "Proceso #", i+1
     time.sleep(2)
-
-
-
+    hilo.paused = True
     Procesos[i].mostrar(teclado.teclapress)
+    hilo.paused = False
     print "Tiempo transcurrido:", time.time() - tiempo_inicio, " segundos"
     print "Tiempo restante: ", ((NumProcesos-1) - procesosDone) * 3, " segundos"
     print "Procesos Terminados: ", procesosDone+1
